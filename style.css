@@ -1,0 +1,1333 @@
+/* Modern ve Görsel Arıza-Duruş Formu CSS */
+
+/* CSS Reset ve Temel Stiller */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* CSS Değişkenleri */
+:root {
+    --primary-color: #dc2626;
+    --primary-dark: #b91c1c;
+    --secondary-color: #ef4444;
+    --accent-color: #fca5a5;
+    --success-color: #10b981;
+    --danger-color: #dc2626;
+    --warning-color: #f59e0b;
+    --info-color: #3b82f6;
+    
+    --text-primary: #1f2937;
+    --text-secondary: #6b7280;
+    --text-light: #9ca3af;
+    
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --bg-tertiary: #f1f3f4;
+    
+    --border-color: #e5e7eb;
+    --border-focus: #dc2626;
+    
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+    --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+    
+    --gradient-primary: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+    --gradient-secondary: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    
+    --border-radius: 12px;
+    --border-radius-sm: 8px;
+    
+    --transition: all 0.2s ease;
+}
+
+/* Temel Stiller */
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.75)), url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Temel Animasyonlar */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Container ve Layout */
+.container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 12px;
+}
+
+/* Header Stilleri */
+.header {
+    background: var(--gradient-primary);
+    text-align: center;
+    margin-bottom: 40px;
+    color: white;
+    padding: 30px 0;
+    box-shadow: var(--shadow-lg);
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 0 12px;
+}
+
+.logo-container {
+    flex-shrink: 0;
+}
+
+.habas-logo {
+    background: white;
+    border-radius: 8px;
+    padding: 15px 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border: 16px solid #1e3a8a;
+    position: relative;
+}
+
+.habas-logo::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    background: white;
+    border-radius: 4px;
+    z-index: -1;
+}
+
+.habas-logo::after {
+    content: '';
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    background: linear-gradient(135deg, rgba(30, 58, 138, 0.2) 0%, rgba(59, 130, 246, 0.15) 25%, rgba(99, 102, 241, 0.1) 50%, rgba(139, 92, 246, 0.08) 75%, rgba(168, 85, 247, 0.05) 100%);
+    border-radius: 2px;
+    z-index: -2;
+    backdrop-filter: blur(2px);
+}
+
+.logo-text {
+    color: #dc2626;
+    font-size: 24px;
+    font-weight: 700;
+    font-family: 'Arial Black', 'Helvetica Bold', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.header h1 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.header h1 i {
+    margin-right: 15px;
+    color: #fca5a5;
+}
+
+.header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    font-weight: 300;
+}
+
+/* Ana İçerik */
+.main-content {
+    background: var(--bg-primary);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
+    padding: 25px;
+    margin-bottom: 20px;
+}
+
+/* Form Stilleri */
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+/* Tonaj alanı gizlendiğinde mühendis adı alanını tam genişlik yap */
+.form-row.tonaj-gizli {
+    grid-template-columns: 1fr;
+}
+
+.form-row.tonaj-gizli .form-group:not(#tonajGroup) {
+    grid-column: 1 / -1;
+}
+
+/* Tonaj alanı artık input, normal input stillerini kullan */
+
+/* Tarih alanları için placeholder'ı tamamen gizle */
+input[type="date"]::-webkit-input-placeholder {
+    color: transparent !important;
+    opacity: 0 !important;
+    display: none !important;
+}
+
+input[type="date"]::-moz-placeholder {
+    color: transparent !important;
+    opacity: 0 !important;
+    display: none !important;
+}
+
+input[type="date"]:-ms-input-placeholder {
+    color: transparent !important;
+    opacity: 0 !important;
+    display: none !important;
+}
+
+input[type="date"]::placeholder {
+    color: transparent !important;
+    opacity: 0 !important;
+    display: none !important;
+}
+
+/* Tarih input'ları için placeholder'ı tamamen kaldır */
+input[type="date"]::-webkit-datetime-edit-ampm-field {
+    display: none !important;
+}
+
+input[type="date"]::-webkit-datetime-edit-text {
+    color: #1f2937 !important;
+    font-weight: 500 !important;
+}
+
+input[type="date"]::-webkit-datetime-edit-month-field {
+    color: #1f2937 !important;
+    font-weight: 500 !important;
+}
+
+input[type="date"]::-webkit-datetime-edit-day-field {
+    color: #1f2937 !important;
+    font-weight: 500 !important;
+}
+
+input[type="date"]::-webkit-datetime-edit-year-field {
+    color: #1f2937 !important;
+    font-weight: 500 !important;
+}
+
+/* Tarih input'ları için özel stil - placeholder'ı tamamen gizle */
+input[type="date"] {
+    color: #1f2937 !important;
+    font-weight: 500 !important;
+    background-color: #ffffff !important;
+}
+
+input[type="date"]:focus {
+    color: #1f2937 !important;
+}
+
+/* Tarih input'ları için placeholder'ı tamamen kaldır */
+input[type="date"]::-webkit-datetime-edit-text {
+    color: #1f2937 !important;
+}
+
+input[type="date"]::-webkit-datetime-edit-month-field {
+    color: #1f2937 !important;
+}
+
+input[type="date"]::-webkit-datetime-edit-day-field {
+    color: #1f2937 !important;
+}
+
+input[type="date"]::-webkit-datetime-edit-year-field {
+    color: #1f2937 !important;
+}
+
+/* Firefox için */
+input[type="date"]::-moz-placeholder {
+    color: transparent !important;
+    opacity: 0 !important;
+}
+
+/* IE/Edge için */
+input[type="date"]:-ms-input-placeholder {
+    color: transparent !important;
+    opacity: 0 !important;
+}
+
+/* Tarih alanları için özel stil */
+input[type="date"] {
+    color: #1f2937 !important;
+    font-weight: 500 !important;
+    background-color: #ffffff !important;
+}
+
+/* Tarih input'ları için placeholder'ı tamamen kaldır */
+input[type="date"]::-webkit-datetime-edit {
+    color: #1f2937 !important;
+}
+
+input[type="date"]::-webkit-datetime-edit-fields-wrapper {
+    color: #1f2937 !important;
+}
+
+input[type="date"]::-webkit-datetime-edit-text {
+    color: #1f2937 !important;
+}
+
+input[type="date"]::-webkit-datetime-edit-month-field {
+    color: #1f2937 !important;
+}
+
+input[type="date"]::-webkit-datetime-edit-day-field {
+    color: #1f2937 !important;
+}
+
+input[type="date"]::-webkit-datetime-edit-year-field {
+    color: #1f2937 !important;
+}
+
+/* Tarih input'ları için placeholder'ı tamamen gizle */
+input[type="date"]:invalid {
+    color: #1f2937 !important;
+}
+
+input[type="date"]:valid {
+    color: #1f2937 !important;
+}
+
+input[type="date"]:focus {
+    color: #1f2937 !important;
+}
+
+/* Tonaj Formu Stilleri */
+.tonaj-form-container {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 32px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.tonaj-form-container h2 {
+    color: #1e293b;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0 0 20px 0;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #3b82f6;
+}
+
+.main-form-container {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.main-form-container h2 {
+    color: #1e293b;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0 0 20px 0;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #dc2626;
+}
+
+/* Tüm Kayıtlar Tablosu Bölümü */
+.tum-kayitlar-bolum {
+    margin-top: 24px;
+    padding: 20px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+}
+
+.tum-kayitlar-bolum h3 {
+    color: #1e293b;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 16px 0;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #dc2626;
+}
+
+.kayitlar-tablo-container {
+    overflow-x: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.kayitlar-tablo {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 0.9rem;
+}
+
+.kayitlar-tablo th {
+    background: #f8f9fa;
+    color: #495057;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.8rem;
+    padding: 12px 8px;
+    border: 1px solid #dee2e6;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.kayitlar-tablo td {
+    padding: 10px 8px;
+    border: 1px solid #dee2e6;
+    text-align: center;
+    vertical-align: middle;
+    color: #374151;
+    font-weight: 500;
+}
+
+.kayitlar-tablo tr:nth-child(even) {
+    background: #f9fafb;
+}
+
+.kayitlar-tablo tr:nth-child(odd) {
+    background: white;
+}
+
+.kayitlar-tablo tr:hover {
+    background: #f3f4f6;
+    transition: all 0.2s ease;
+}
+
+.durum-badge {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    display: inline-block;
+    text-align: center;
+    min-width: 60px;
+}
+
+.durum-badge.ariza {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.durum-badge.durus {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.yapilan-is-cell {
+    max-width: 200px;
+    text-align: left !important;
+    word-wrap: break-word;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.btn-edit-small, .btn-delete-small {
+    padding: 4px 8px;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin: 0 2px;
+    min-width: 28px;
+    height: 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-edit-small {
+    background: #06b6d4;
+    color: white;
+}
+
+.btn-delete-small {
+    background: #ef4444;
+    color: white;
+}
+
+.btn-edit-small:hover {
+    background: #0891b2;
+    transform: scale(1.05);
+}
+
+.btn-delete-small:hover {
+    background: #dc2626;
+    transform: scale(1.05);
+}
+
+/* Tonaj Kayıtları Bölümü */
+.tonaj-kayitlari-bolum {
+    margin-top: 24px;
+    padding: 20px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+}
+
+.tonaj-kayitlari-bolum h3 {
+    color: #1e293b;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 16px 0;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #3b82f6;
+}
+
+.tonaj-kayitlari {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.tonaj-kayit-item {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.tonaj-kayit-bilgi {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.tonaj-kayit-tarih {
+    font-weight: 500;
+    color: #374151;
+}
+
+.tonaj-kayit-muhendis {
+    font-size: 0.9rem;
+    color: #6b7280;
+    font-style: italic;
+}
+
+.tonaj-kayit-miktar {
+    font-weight: 600;
+    color: #3b82f6;
+    font-size: 1.1rem;
+}
+
+.tonaj-kayit-id {
+    font-size: 0.8rem;
+    color: #9ca3af;
+    font-style: italic;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group.half-width {
+    width: calc(50% - 10px);
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.form-group.half-width:nth-child(even) {
+    margin-right: 0;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 12px 16px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-sm);
+    font-size: 0.95rem;
+    transition: var(--transition);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    width: 100%;
+    height: 48px;
+}
+
+/* Tüm select alanları için ortak stil - tonaj ile TIPATIP AYNI */
+.form-group select {
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 12px center !important;
+    background-size: 16px !important;
+    padding-right: 40px !important;
+    border: 1px solid #e5e7eb !important;
+    color: #1f2937 !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
+    font-weight: 400 !important;
+    line-height: 1.5 !important;
+    margin: 0 !important;
+    vertical-align: middle !important;
+    cursor: pointer !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+    font-family: inherit;
+    line-height: 1.6;
+}
+
+/* Form validasyon stilleri - Tüm alanlar her zaman kırmızı */
+.form-group input,
+.form-group select,
+.form-group textarea {
+    border-color: #ef4444 !important;
+    background-color: rgba(239, 68, 68, 0.05) !important;
+}
+
+
+
+/* Textarea için özel stil */
+.form-group textarea.valid {
+    background-color: rgba(16, 185, 129, 0.05);
+}
+
+.form-group textarea.invalid {
+    background-color: rgba(239, 68, 68, 0.05);
+}
+
+/* Buton Stilleri */
+.form-actions {
+    display: flex;
+    gap: 25px;
+    justify-content: center;
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 14px 28px;
+    border: none;
+    border-radius: var(--border-radius-sm);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    justify-content: center;
+    min-width: 140px;
+}
+
+.btn-primary {
+    background: var(--gradient-primary);
+    color: white;
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+}
+
+.btn-secondary {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+    background: var(--bg-tertiary);
+    border-color: var(--primary-color);
+}
+
+/* Modal Stilleri */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    overflow: auto;
+}
+
+.modal-content {
+    background: white;
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+    width: 100%;
+    max-width: none;
+    max-height: 100vh;
+    height: 100vh;
+    overflow: hidden;
+    box-shadow: none;
+    position: relative;
+    z-index: 10000;
+}
+
+.modal-header {
+    background: #dc2626;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.modal-header h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.modal-header h2 i {
+    margin-right: 15px;
+    color: #fca5a5;
+}
+
+
+
+.close {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-left: auto;
+}
+
+.close:hover {
+    color: #fecaca;
+    transform: scale(1.1);
+}
+
+.modal-body {
+    padding: 30px;
+    max-height: calc(90vh - 100px);
+    overflow-y: auto;
+}
+
+/* Filtreler */
+.filters {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+    padding: 15px 20px;
+    background: #f8f9fa;
+    border-radius: 0;
+    border: none;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.search-input,
+.filter-select {
+    padding: 12px 16px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-sm);
+    font-size: 0.95rem;
+    min-width: 160px;
+    background: var(--bg-primary);
+    transition: var(--transition);
+}
+
+.search-input:focus,
+.filter-select:focus {
+    outline: none;
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+}
+
+/* Vardiya özetleri stilleri - Resimdeki gibi */
+.vardiya-ozetleri {
+    padding: 30px;
+    background: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.vardiya-baslik-ana {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: #1f2937;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.vardiya-tablo {
+    border: 2px solid #d1d5db;
+    margin-bottom: 25px;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.vardiya-tablo-baslik {
+    background: #f3f4f6;
+    padding: 15px 20px;
+    border-bottom: 2px solid #d1d5db;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    color: #374151;
+}
+
+.vardiya-saat {
+    font-size: 16px;
+}
+
+.vardiya-muhendis {
+    font-size: 16px;
+    background: white;
+    padding: 8px 15px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+}
+
+.vardiya-kayitlar {
+    padding: 20px;
+    min-height: 120px;
+}
+
+.kayit-item {
+    background: #f9fafb;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    border-left: 4px solid #dc2626;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* Tonaj kayıtları için özel stil */
+.kayit-item[data-tip="tonaj"] {
+    border-left-color: #3b82f6;
+    background: #f0f9ff;
+}
+
+.kayit-item[data-tip="tonaj"] .kayit-zaman {
+    color: #3b82f6;
+    font-weight: 700;
+}
+
+.kayit-numarasi {
+    font-weight: 600;
+    color: #dc2626;
+    margin-right: 10px;
+}
+
+.kayit-zaman {
+    font-weight: 600;
+    color: #374151;
+    margin-right: 15px;
+}
+
+.kayit-detay {
+    color: #6b7280;
+}
+
+.vardiya-tonaj {
+    background: #f3f4f6;
+    padding: 15px 20px;
+    border-top: 2px solid #d1d5db;
+    text-align: right;
+    font-weight: 600;
+    color: #374151;
+    font-size: 16px;
+}
+
+.gunluk-toplam {
+    background: #f3f4f6;
+    border: 2px solid #d1d5db;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: right;
+    font-weight: 700;
+    color: #374151;
+    font-size: 18px;
+}
+
+.gunluk-toplam-ic {
+    display: inline-block;
+    background: white;
+    padding: 15px 25px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+}
+
+#kayitlarTable {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#kayitlarTable th,
+#kayitlarTable td {
+    padding: 12px 16px;
+    text-align: left;
+    border: 1px solid #d1d5db;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+#kayitlarTable th {
+    background: #f8f9fa;
+    color: #495057;
+    font-weight: 600;
+    text-transform: none;
+    letter-spacing: 0.3px;
+    font-size: 13px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    border-bottom: 2px solid #dee2e6;
+}
+
+#kayitlarTable th:first-child {
+    border-top-left-radius: 0;
+}
+
+#kayitlarTable th:last-child {
+    border-top-right-radius: 0;
+}
+
+#kayitlarTable tr:nth-child(even) {
+    background: #f9fafb;
+}
+
+#kayitlarTable tr:nth-child(odd) {
+    background: white;
+}
+
+#kayitlarTable tr:hover {
+    background: #f3f4f6;
+    transform: scale(1.001);
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+#kayitlarTable td {
+    color: #374151;
+    font-weight: 500;
+}
+
+/* Badge stilleri */
+.badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    display: inline-block;
+    text-align: center;
+    min-width: 80px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.badge-danger {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+}
+
+.badge-warning {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    color: white;
+}
+
+
+
+/* Badge Stilleri */
+.badge {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    display: inline-block;
+    text-align: center;
+    min-width: 70px;
+}
+
+.badge-danger {
+    background: #ef4444;
+    color: white;
+}
+
+.badge-warning {
+    background: #f59e0b;
+    color: white;
+}
+
+/* Aksiyon Butonları */
+.action-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-small {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    border-radius: var(--border-radius-sm);
+    min-width: auto;
+    transition: var(--transition);
+}
+
+.btn-edit {
+    background: #06b6d4;
+    color: white;
+}
+
+.btn-delete {
+    background: #ef4444;
+    color: white;
+}
+
+.btn-edit:hover,
+.btn-delete:hover {
+    opacity: 0.8;
+}
+
+/* Mesaj Stilleri */
+.message {
+    padding: 16px 20px;
+    border-radius: var(--border-radius-sm);
+    margin-bottom: 20px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-left: 4px solid;
+}
+
+.message.success {
+    background: #d1fae5;
+    color: #065f46;
+    border-left-color: var(--success-color);
+}
+
+.message.error {
+    background: #fee2e2;
+    color: #991b1b;
+    border-left-color: var(--danger-color);
+}
+
+.message i {
+    font-size: 1.1rem;
+}
+
+/* Loading State */
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+    position: relative;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 24px;
+    height: 24px;
+    margin: -12px 0 0 -12px;
+    border: 3px solid var(--bg-tertiary);
+    border-top: 3px solid var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive Tasarım */
+@media (max-width: 1024px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .main-content {
+        padding: 35px;
+    }
+    
+    .header h1 {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 2.5rem;
+    }
+    
+    .main-content {
+        padding: 25px;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn {
+        width: 100%;
+        max-width: 320px;
+    }
+    
+    .modal-content {
+        width: 98%;
+        margin: 1% auto;
+    }
+    
+    .modal-body {
+        padding: 25px;
+    }
+    
+    .filters {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .search-input,
+    .filter-select {
+        width: 100%;
+        min-width: auto;
+    }
+    
+    th, td {
+        padding: 12px 10px;
+        font-size: 0.85rem;
+    }
+    
+    .kayitlar-tablo th,
+    .kayitlar-tablo td {
+        padding: 8px 4px;
+        font-size: 0.75rem;
+    }
+    
+    .yapilan-is-cell {
+        max-width: 120px;
+    }
+    
+    .btn-edit-small, .btn-delete-small {
+        min-width: 24px;
+        height: 24px;
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .header h1 {
+        font-size: 2rem;
+    }
+    
+    .main-content {
+        padding: 20px;
+    }
+    
+    .form {
+        gap: 25px;
+    }
+    
+    .btn {
+        padding: 16px 24px;
+        font-size: 1rem;
+    }
+    
+    .modal-header {
+        padding: 20px 25px;
+    }
+    
+    .modal-header h2 {
+        font-size: 1.5rem;
+    }
+    
+    .modal-body {
+        padding: 20px;
+    }
+}
+
+/* Özel Efektler */
+.form-group input:valid,
+.form-group select:valid,
+.form-group textarea:valid {
+    border-color: var(--success-color);
+}
+
+.form-group input:invalid:not(:placeholder-shown),
+.form-group select:invalid:not(:placeholder-shown),
+.form-group textarea:invalid:not(:placeholder-shown) {
+    border-color: var(--danger-color);
+}
+
+/* Hover Efektleri */
+.form-group:hover label {
+    color: #dc2626;
+}
+
+/* Scrollbar Stilleri */
+.modal-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-body::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+    border-radius: 4px;
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+    background: #dc2626;
+    border-radius: 4px;
+}
+
+.modal-body::-webkit-scrollbar-thumb:hover {
+    background: #b91c1c;
+}
+
+/* Vardiya Kayıtları Stilleri */
+.vardiya-kayit {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+}
+
+.vardiya-kayit:hover {
+    border-color: #dc2626;
+    box-shadow: 0 2px 8px rgba(220, 38, 38, 0.1);
+}
+
+.kayit-baslik {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.kayit-saat {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+}
+
+.kayit-detay {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 8px;
+    font-size: 0.85rem;
+}
+
+.kayit-birim,
+.kayit-cihaz,
+.kayit-lokasyon,
+.kayit-muhendis,
+.kayit-is,
+.kayit-tonaj {
+    color: var(--text-secondary);
+}
+
+.kayit-is {
+    grid-column: 1 / -1;
+    font-style: italic;
+    margin-top: 5px;
+    padding-top: 5px;
+    border-top: 1px solid var(--border-color);
+}
+
+.kayit-tonaj {
+    font-weight: 600;
+    color: #dc2626;
+}
+
+.kayit-yok {
+    text-align: center;
+    color: var(--text-secondary);
+    font-style: italic;
+    padding: 20px;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    border: 1px dashed var(--border-color);
+}

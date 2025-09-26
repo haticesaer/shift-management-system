@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arıza-Duruş Kaydetme Formu</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <div class="logo-container">
+                    <div class="habas-logo">
+                        <span class="logo-text">HABAŞ</span>
+                    </div>
+                </div>
+                <h1>Arıza-Duruş Kaydetme Formu</h1>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <!-- Tonaj Kaydı Formu -->
+            <div class="tonaj-form-container">
+                <h2>Tonaj Kaydı</h2>
+                <form id="tonajForm" class="form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="tonajTarih">Tarih *</label>
+                            <input type="date" id="tonajTarih" name="tonajTarih" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="tonajMiktar">Tonaj Miktarı *</label>
+                            <input type="number" id="tonajMiktar" name="tonajMiktar" placeholder="Tonaj miktarını giriniz..." min="0" step="1" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="tonajMuhendis">Mühendis Adı</label>
+                            <input type="text" id="tonajMuhendis" name="tonajMuhendis" placeholder="Mühendis adını yazınız...">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Tonaj Kaydet</button>
+                </form>
+            </div>
+            
+            <!-- Ana Arıza/Duruş Formu -->
+            <div class="main-form-container">
+                <h2>Arıza/Duruş Kaydı</h2>
+                <form id="arizaForm" class="form">
+                <div class="form-row">
+                                    <div class="form-group">
+                    <label for="durumTipi">Duruş Tipi *</label>
+                    <select id="durumTipi" name="durumTipi" required>
+                        <option value="">Seçiniz</option>
+                        <option value="durus">Duruş</option>
+                        <option value="ariza">Arıza</option>
+                    </select>
+                </div>
+                    
+                                    <div class="form-group">
+                    <label for="tarih">Tarih *</label>
+                    <input type="date" id="tarih" name="tarih" required value="2025-09-09" style="color: #1f2937 !important; font-weight: 500 !important; background-color: #ffffff !important;">
+                    
+                </div>
+                </div>
+
+                <div class="form-row">
+                                    <div class="form-group">
+                    <label for="baslangicSaati">Başlangıç Saati *</label>
+                    <input type="time" id="baslangicSaati" name="baslangicSaati" required>
+                </div>
+                    
+                    <div class="form-group">
+                        <label for="bitisSaati">Bitiş Saati *</label>
+                        <input type="time" id="bitisSaati" name="bitisSaati" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="vardiya">Vardiya *</label>
+                        <select id="vardiya" name="vardiya" required>
+                            <option value="">Seçiniz</option>
+                            <option value="1">Sabah Vardiyası (08:00-16:00)</option>
+                            <option value="2">Akşam Vardiyası (16:00-24:00)</option>
+                            <option value="3">Gece Vardiyası (00:00-08:00)</option>
+                        </select>
+                        
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="birim">Birim *</label>
+                        <select id="birim" name="birim" required>
+                            <option value="">Seçiniz</option>
+                            <option value="seviye2">Seviye 2</option>
+                            <option value="elektrikBakim">Elektrik Bakım</option>
+                            <option value="makineBakim">Makine Bakım</option>
+                            <option value="uretim">Üretim</option>
+                            <option value="kalite">Kalite</option>
+                        </select>
+                        
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="lokasyon">Lokasyon *</label>
+                        <select id="lokasyon" name="lokasyon" required>
+                            <option value="">Seçiniz</option>
+                            <option value="RM">RM</option>
+                            <option value="FM">FM</option>
+                            <option value="firin">Fırın</option>
+                            <option value="F2">F2</option>
+                            <option value="R2">R2</option>
+                            <option value="DC3">DC3</option>
+                            <option value="DC4">DC4</option>
+                        </select>
+                        
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="cihazAdi">Cihaz Adı *</label>
+                        <select id="cihazAdi" name="cihazAdi" required>
+                            <option value="">Seçiniz</option>
+                            <option value="F2Looper">F2 Looper</option>
+                            <option value="R2Edger">R2 Edger</option>
+                            <option value="DC3">DC3</option>
+                            <option value="DC4">DC4</option>
+                            <option value="Firin">Fırın</option>
+                            <option value="RM">RM</option>
+                            <option value="FM">FM</option>
+                        </select>
+                        
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="muhendisAdi">Mühendis Adı</label>
+                        <input type="text" id="muhendisAdi" name="muhendisAdi" placeholder="Mühendis adını yazınız...">
+                        
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="tonaj">Tonaj</label>
+                        <input type="number" id="tonaj" name="tonaj" placeholder="Tonaj miktarını giriniz..." min="0" step="1">
+                    </div>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label for="yapilanIs">Yapılan İş *</label>
+                    <textarea id="yapilanIs" name="yapilanIs" rows="4" placeholder="Yapılan işi detaylı olarak açıklayınız..." required></textarea>
+                    
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Kaydet
+                    </button>
+                    <button type="button" class="btn btn-secondary" id="tumKayitlarBtn">
+                        <i class="fas fa-list"></i> Tüm Kayıtlar
+                    </button>
+                </div>
+            </form>
+            </div>
+        </main>
+
+        <!-- Tüm Kayıtlar Modal -->
+        <div id="tumKayitlarModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2><i class="fas fa-list"></i> Tüm Kayıtlar</h2>
+                    <span class="close">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div class="filters">
+                        <input type="date" id="filterTarih" class="filter-select" title="Tarih seçin">
+                        <input type="text" id="searchInput" placeholder="Arama yapın..." class="search-input">
+                        <select id="filterDurum" class="filter-select">
+                            <option value="">Tüm Durumlar</option>
+                            <option value="durus">Duruş</option>
+                            <option value="ariza">Arıza</option>
+                        </select>
+                        <select id="filterVardiya" class="filter-select">
+                            <option value="">Tüm Vardiyalar</option>
+                            <option value="1">Sabah Vardiyası</option>
+                            <option value="2">Akşam Vardiyası</option>
+                            <option value="3">Gece Vardiyası</option>
+                        </select>
+                    </div>
+                                    <div class="vardiya-ozetleri">
+                    <div class="vardiya-baslik-ana">SAC HADDE VARDİYA ÜRETİM ÖZETİ</div>
+                    
+                    <!-- Gece Vardiyası -->
+                    <div class="vardiya-tablo">
+                        <div class="vardiya-tablo-baslik">
+                            <div class="vardiya-saat">Vardiya : 00:00/08:00</div>
+                            <div class="vardiya-muhendis">Vardiya Mühendisi : <span id="geceMuhendis">-</span></div>
+                        </div>
+                        <div class="vardiya-kayitlar" id="geceKayitlar">
+                            <!-- Gece vardiyası kayıtları buraya -->
+                        </div>
+                        <div class="vardiya-tonaj">Vardiya Tonajı : <span id="geceTonaj">0</span></div>
+                    </div>
+
+                    <!-- Sabah Vardiyası -->
+                    <div class="vardiya-tablo">
+                        <div class="vardiya-tablo-baslik">
+                            <div class="vardiya-saat">Vardiya : 08:00/16:00</div>
+                            <div class="vardiya-muhendis">Vardiya Mühendisi : <span id="sabahMuhendis">-</span></div>
+                        </div>
+                        <div class="vardiya-kayitlar" id="sabahKayitlar">
+                            <!-- Sabah vardiyası kayıtları buraya -->
+                        </div>
+                        <div class="vardiya-tonaj">Vardiya Tonajı : <span id="sabahTonaj">0</span></div>
+                    </div>
+
+                    <!-- Akşam Vardiyası -->
+                    <div class="vardiya-tablo">
+                        <div class="vardiya-tablo-baslik">
+                            <div class="vardiya-saat">Vardiya : 16:00/24:00</div>
+                            <div class="vardiya-muhendis">Vardiya Mühendisi : <span id="aksamMuhendis">-</span></div>
+                        </div>
+                        <div class="vardiya-kayitlar" id="aksamKayitlar">
+                            <!-- Akşam vardiyası kayıtları buraya -->
+                        </div>
+                        <div class="vardiya-tonaj">Vardiya Tonajı : <span id="aksamTonaj">0</span></div>
+                    </div>
+
+                    <!-- Günlük Toplam -->
+                    <div class="gunluk-toplam">
+                        <div class="gunluk-toplam-ic">GÜNLÜK TONAJ : <span id="gunlukToplamTonaj">0</span></div>
+                    </div>
+                </div>
+                
+                
+                <!-- Tonaj Kayıtları Bölümü -->
+                <div class="tonaj-kayitlari-bolum">
+                    <h3>Tonaj Kayıtları</h3>
+                    <div class="tonaj-kayitlari" id="tonajKayitlari">
+                        <!-- Tonaj kayıtları buraya -->
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="database.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
